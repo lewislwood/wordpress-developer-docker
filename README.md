@@ -151,6 +151,9 @@ This way you can use the CLI command above as follows:
 ```
 wp plugin list
 ```
+`` Install a migration tool plugin
+wp plugin install all-in-one-wp-migration --activate
+``
 
 ### phpMyAdmin
 
