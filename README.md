@@ -1,12 +1,16 @@
-# WPDC - WordPress Docker Compose
+# WordPress-Developer-Docker
 
-Easy WordPress development with Docker and Docker Compose.
+Easy WordPress development with Docker and Docker Compose..
+This include a plugin boilerPlate Plugin & Theme.
+Also the the site and databases are persistant.
 
 With this project you can quickly run the following:
-
-- [WordPress and WP CLI](https://hub.docker.com/_/wordpress/)
-- [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+Wordpress, WPCli, PHPMyAdmin or Admininer.
+ [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 - [MySQL](https://hub.docker.com/_/mysql/)
+
+MGitHub to clone:
+$ git clone https://github.com/lewislwood/wordpress-developer-docker
 
 Contents:
 
@@ -150,13 +154,41 @@ This way you can use the CLI command above as follows:
 
 ```
 wp plugin list
-```
-`` Install a migration tool plugin
-wp plugin install all-in-one-wp-migration --activate
+
 ``
 
 ### phpMyAdmin
 
 You can also visit `http://127.0.0.1:8080` to access phpMyAdmin after starting the containers.
-
 The default username is `root`, and the password is the same as supplied in the `.env` file.
+
+
+?
+This version I prefer Adminer instead of PHPMyAdmin so I have given 2 versions of the YYML file.  Simply copy the one you want over the Docker-Compose.yml file to get the default.
+
+I also modified the mysql for wp-data to be a persistent datasorce folder.
+
+By both wp-app and wp-data being persistent folder you can simply copy the entire folder contents as a backup as well.  Although the export.sh should be sufficient if you already have backed up the wp-config.php file.  Also backup up your custom plugins, usually use Git repository management for them.
+
+If for some reason you want to modify the contents or copy wp-app or wp-data.  Then this can be accomplished with the following:* ls -l * `# to list owner id and group id
+* the user id and group id should be "www-data" and wp-data should be "999"
+* run: sudo chown -R userid:userid wp-app
+   **  Replace UserID with your Userid.  This should make you the ownere of all those files.  Now you can copy or modify them.
+   * Now copy those files whereever you want.
+   * Run $ sudo chown -R www-data:www-data wp-app `# to restore it back
+   * $sudo chown -R 999:999 wp-data
+
+   To create backup points simply run the following:
+   * $ bash export.sh
+     This will create a backup sql file in the wp-data folder.  
+
+
+
+For full recovery you will need an .sql, wpconfig.php file.  If you had custom SQL files or istalled plugins, you will want at least one backup of your wp-content files tree.  And your custom plugin folders in the directory.  Your own docker-compose.yml file if you modified it from mine.
+Then you will launch the container and then adminer or phpmyadmin and restore the sql to the database.
+Copy your wpconfig.php over the one in the folder.
+Now you can go to your website.  If you did everything correctly you will not be asked to install wordpress, just your site comes up.
+
+Alternative is simply copy the entire contents and copy it back when restoring.  Simply change owner back and your back in business.
+
+
