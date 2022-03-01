@@ -1,7 +1,7 @@
 # WordPress-Developer-Docker
 
 Easy WordPress development with Docker and Docker Compose..
-This include a plugin boilerPlate Plugin & Theme.
+This include a plugin boilerPlate Plugin & Theme
 Also the the site and databases are persistant
 
 With this project you can quickly run the following:
