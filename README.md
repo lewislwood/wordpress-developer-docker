@@ -2,7 +2,7 @@
 
 Easy WordPress development with Docker and Docker Compose..
 This include a plugin boilerPlate Plugin & Theme.
-Also the the site and databases are persistant.
+Also the the site and databases are persistant
 
 With this project you can quickly run the following:
 Wordpress, WPCli, PHPMyAdmin or Admininer.
